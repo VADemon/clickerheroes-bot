@@ -27,29 +27,31 @@ Func doInactivityClick()
 	endif
 endfunc
 
-Func calcMouseCoords()	; calculates real mouse coordinates relative to CH Window position
+Func calcMouseCoords_winapi()
+	local $clientSize = WinGetClientSize("Clicker Heroes")
+	
 	Local $mousePos = MouseGetPos()	; 0 = X;  1 = Y
-	Local $windowPos = WinGetPos("Clicker Heroes")	; 0 = X Pos;	1 = Y Pos;	2 = Width;	3 = Height
+	Local $mousePosStruct = DllStructCreate("int X;int Y")
 	
-	; Mouse coords inside the game window
-	; @> -16 is an offset, dunno why the position shifted without it
-	Local $relativeMousePos = [$mousePos[0] - $windowPos[0] + 4, $mousePos[1] - $windowPos[1] - 14]
+	DllStructSetData($mousePosStruct, "X", $mousePos[0])
+	DllStructSetData($mousePosStruct, "Y", $mousePos[1])
 	
-	;; is the mouse INSIDE the window?
-	if $relativeMousePos[0] < $windowPos[2] and $relativeMousePos[1] < $windowPos[3] then
+	local $rtvalue = _WinAPI_ScreenToClient(WinGetHandle("Clicker Heroes"), $mousePosStruct)
 	
-		;MsgBox(0, "Relativeposition", "Calculated position:" & @CRLF & "x: " & $relativeMousePos[0] & "   y: " & $relativeMousePos[1])
-		return $relativeMousePos
+	local $newCoords[2] = [DllStructGetData($mousePosStruct, "X"), DllStructGetData($mousePosStruct, "Y")]
+	
+	if $newCoords[0] < 1 or $newCoords[1] < 1 or $newCoords[0] > $clientSize[0] or $newCoords[1] > $clientSize[1] then
+		; Mouse is outside the CH Window
+		return $defaultMousePos
 	else
-	
-		;MsgBox(0, "Resetting position", "Calculated position is outside the window:" & @CRLF & "x: " & $relativeMousePos[0] & "   y: " & $relativeMousePos[1])
-		return $mouseClickerPos		; either the default setting or the last user-defined position
-		;return $defaultMousePos	; don't use invalid parameters from above
+		; Mouse is inside the window, the calculations are correct
+		return $newCoords
 	endif
+	
 endfunc
 
 Func setCurrentMousePos()
-	$mouseClickerPos = calcMouseCoords()
+	$mouseClickerPos = calcMouseCoords_winapi()
 	$MousePosX = $mouseClickerPos[0]
 	$MousePosY = $mouseClickerPos[1]
 endfunc

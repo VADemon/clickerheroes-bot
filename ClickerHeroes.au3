@@ -1,5 +1,7 @@
-#include <ClickFunctions.au3>
+#include <WinAPI.au3>
 #include <PostMessage.au3>
+
+#include <ClickFunctions.au3>
 #include <ClickerHeroes_functions.au3>
 
 ;Script by VADemon - http://steamcommunity.com/profiles/76561198033268090
@@ -46,7 +48,7 @@ while 1
 	
 	if $scriptEnabled == 0 then	;; Inactivity Clicker (if clicker is disabled, you won't loose your click combo)
 		$inactivityClickTimer += 1
-		if $inactivityClickTimer == 8 then
+		if $inactivityClickTimer == 25 then
 			doInactivityClick()
 		endif
 	endif
@@ -71,7 +73,7 @@ Func setting()
 		endif
 	else
 		$scriptEnabled = 0
-		Call("playsound", 2)
+		Call("playsound", 0)
 		
 		; we don't know exactly when the inactivity timer is going to tick, just to make sure we don't lose combo clicks
 		doInactivityClick()
@@ -81,21 +83,10 @@ EndFunc
 
 
 Func playsound($y)
+	SoundSetWaveVolume(50)
 	if $y==1 then
-		Beep(500, 200)
-		Beep(450, 200)
-		Beep(400, 200)
-		Beep(450, 200)
-		Beep(500, 200)
-		Beep(500, 200)
-		Beep(500, 400)
-	elseif $y==2 then
-		Beep(500, 200)
-		Beep(500, 200)
-		Beep(450, 200)
-		Beep(450, 200)
-		Beep(500, 200)
-		Beep(450, 200)
-		Beep(400, 400)
+		SoundPlay(@ScriptDir & "\turnon.wav")
+	elseif $y==0 then
+		SoundPlay(@ScriptDir & "\turnoff.wav")
 	endif
 EndFunc
