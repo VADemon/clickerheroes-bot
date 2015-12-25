@@ -44,7 +44,7 @@ while 1
 		sleep($clickSleep)
 	WEnd
 	
-	if $scriptEnabled == 0 and CH_exists() then	;; Inactivity Clicker (if clicker is disabled, you won't loose your click combo)
+	if $scriptEnabled == 0 then	;; Inactivity Clicker (if clicker is disabled, you won't loose your click combo)
 		$inactivityClickTimer += 1
 		if $inactivityClickTimer == 8 then
 			doInactivityClick()
