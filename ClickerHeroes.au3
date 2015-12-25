@@ -11,7 +11,7 @@ HotKeySet("{PGUP}","setting")
 HotKeySet("{PGDN}","mouseposclick")
 
 Func mouseposclick()
-	local $coords = calcMouseCoords()
+	local $coords = calcMouseCoords_winapi()
 	_PostMessage_FastClick($CH_Hwnd, $coords[0] + 4, $coords[1] - 14, $User32, 1, 10)
 endfunc
 
