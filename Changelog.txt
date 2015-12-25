@@ -1,0 +1,16 @@
+
+v0.3:
+	[ADDED] Single-click hotkey: you can now click manually inside the Clicker Heroes window even if you're currently in a fullscreen game (not quite true) to purchase upgrades etc.
+	[ADDED] Inactivity clicker: it'll click when the clicker is off so you don't lose your click combo
+	[ADDED] Config file
+	Code refactoring
+
+v0.2:
+	[ADDED] Inactive window clicker. Yay! "Do your stuff while it's clicking."
+
+v0.1:
+	[CHANGED] Performance improvement. Using a new click function to reduce CPU usage (now only max. 0.5%!)
+	[FIXED] Tweaking the script because of the unexpected I/O Queue issues (full queue -> clicking after the bot is off)
+	
+v0.0:
+	First versions of a simple click bot for personal use, nothing special
