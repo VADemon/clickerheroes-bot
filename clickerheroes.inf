@@ -4,3 +4,4 @@ defaultmousey = 380
 batchclicks = 2
 batchclicksdelay = 20
 sleep = 40
+inactivityclicker = 0

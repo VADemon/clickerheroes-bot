@@ -25,6 +25,7 @@ Global Const $defaultMousePos[2] = [IniRead($cfgFile, "clicker", "defaultmousex"
 Global Const $batchClicks = 		IniRead($cfgFile, "clicker", "batchclicks", 2)
 Global Const $batchClicksDelay =	IniRead($cfgFile, "clicker", "batchclicksdelay", 10)
 Global Const $clickSleep = 			IniRead($cfgFile, "clicker", "sleep", 60)
+Global Const $inactivityClickerEnabled = IniRead($cfgFile, "clicker", "inactivityclicker", 1)
 
 Global $mouseClickerPos = 0	; used to click
 Global $MousePosX = 0
@@ -46,7 +47,7 @@ while 1
 		sleep($clickSleep)
 	WEnd
 	
-	if $scriptEnabled == 0 then	;; Inactivity Clicker (if clicker is disabled, you won't loose your click combo)
+	if $scriptEnabled == 0 and $inactivityClickerEnabled == 1 then	;; Inactivity Clicker (if clicker is disabled, you won't loose your click combo)
 		$inactivityClickTimer += 1
 		if $inactivityClickTimer == 25 then
 			doInactivityClick()
