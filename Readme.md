@@ -1,3 +1,5 @@
+ClickerHeroes autoclicker bot. Fast, small and easy.
+
 ### How to use:
 
 1) Open ClickerHeroes and Launch this bot
