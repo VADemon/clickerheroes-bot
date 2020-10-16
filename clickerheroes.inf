@@ -1,7 +1,26 @@
 [clicker]
+; Where to start clicking if mouse is outside the window
 defaultmousex = 840
 defaultmousey = 380
-batchclicks = 2
-batchclicksdelay = 20
-sleep = 40
+
+; Toggle bot hotkey,   default={PGUP} - for PageUp
+; SEE https://www.autoitscript.com/autoit3/docs/functions/HotKeySet.htm
+; AND https://www.autoitscript.com/autoit3/docs/functions/HotKeySet.htm
+toggle_hotkey={PGUP}
+
+; Single click hotkey, default={PGUP} - for PageDown
+; Usage: if CH window out of focus but you can click into it with mouse from eg Steam Overlay
+click_hotkey={PGDN}
+
+; Clicks are sent in batches. How many per Batch?
+clicks_per_batch = 4
+
+; Mouse button held down this many [ms]
+button_down_delay = 12
+
+; Sleep BETWEEN batches [ms]
+sleep = 16
+
+; Click to maintain active bonus even if bot is inactive
+; No longer needed since autoclickers
 inactivityclicker = 0
