@@ -7,8 +7,7 @@
 ;Script by VADemon - http://steamcommunity.com/profiles/76561198033268090
 ;Melody by Mast3rpyr0 - http://www.autoitscript.com/forum/topic/50598-musical-melodies/page__hl__beep+song
 
-HotKeySet("{PGUP}","setting")
-HotKeySet("{PGDN}","mouseposclick")
+
 
 Func mouseposclick()
 	local $coords = calcMouseCoords_winapi()
@@ -22,10 +21,15 @@ Global $scriptEnabled = 0
 
 Global Const $cfgFile = "clickerheroes.inf"
 Global Const $defaultMousePos[2] = [IniRead($cfgFile, "clicker", "defaultmousex", 840) , IniRead($cfgFile, "clicker", "defaultmousey", 380) ]	; default coordinates
-Global Const $batchClicks = 		IniRead($cfgFile, "clicker", "batchclicks", 2)
-Global Const $batchClicksDelay =	IniRead($cfgFile, "clicker", "batchclicksdelay", 10)
+Global Const $clicksPerBatch = 		IniRead($cfgFile, "clicker", "clicks_per_batch", 2)
+Global Const $buttonDownDelay =	    IniRead($cfgFile, "clicker", "button_down_delay", 10)
 Global Const $clickSleep = 			IniRead($cfgFile, "clicker", "sleep", 60)
 Global Const $inactivityClickerEnabled = IniRead($cfgFile, "clicker", "inactivityclicker", 1)
+
+Global Const $toggle_hotkey = IniRead($cfgFile, "clicker", "toggle_hotkey", "{PGUP}")
+Global Const $click_hotkey =  IniRead($cfgFile, "clicker", "click_hotkey", "{PGDN}")
+HotKeySet($toggle_hotkey, "setting")
+HotKeySet($click_hotkey, "mouseposclick")
 
 Global $mouseClickerPos = 0	; used to click
 Global $MousePosX = 0
@@ -43,7 +47,7 @@ while 1
 
 	while $scriptEnabled==1
 		;_MouseClickFastVAD($MousePosX, $MousePoxY, $User32, 2)
-		_PostMessage_FastClick($CH_Hwnd, $MousePosX, $MousePosY, $User32, $batchClicks, $batchClicksDelay)
+		_PostMessage_FastClick($CH_Hwnd, $MousePosX, $MousePosY, $User32, $clicksPerBatch, $buttonDownDelay)
 		sleep($clickSleep)
 	WEnd
 	
