@@ -1,5 +1,7 @@
 ClickerHeroes autoclicker bot. Fast, small and easy.
 
+Download: [Releases Page](/VADemon/clickerheroes-bot/releases)
+
 ### How to use:
 
 1) Open ClickerHeroes and Launch this bot
@@ -14,6 +16,12 @@ ClickerHeroes autoclicker bot. Fast, small and easy.
 #### Configuration:
 
 Self-explanatory in `clickerheroes.inf`
+
+#### Compilation:
+
+You can compile it yourself, just get [AutoIt](https://www.autoitscript.com/site/autoit/downloads/) and double-click `ClickerHeroes.au3` to launch OR right-click to compile into `.exe`
+
+Note: Of course a lot of "anti-virus" software will """detect""" it as a virus. The reason: they're all bad. There's not much code, you can read all of it in 5 minutes.
 
 #### License:
 
