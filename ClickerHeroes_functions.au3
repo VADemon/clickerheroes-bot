@@ -37,7 +37,7 @@ Func calcMouseCoords_winapi()
 	DllStructSetData($mousePosStruct, "X", $mousePos[0])
 	DllStructSetData($mousePosStruct, "Y", $mousePos[1])
 	
-	local $rtvalue = _WinAPI_ScreenToClient(CH_Hwnd, $mousePosStruct)
+	local $rtvalue = _WinAPI_ScreenToClient($CH_Hwnd, $mousePosStruct)
 	
 	local $newCoords[2] = [DllStructGetData($mousePosStruct, "X"), DllStructGetData($mousePosStruct, "Y")]
 	
