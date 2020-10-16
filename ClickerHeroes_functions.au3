@@ -6,11 +6,12 @@ Func CH_exists()
 	if $CH_Hwnd == 0 or IsHWnd($CH_Hwnd) == 0 then
 		resetMousePos()	; reset the settings of the previous window
 		
-		if WinGetHandle("Clicker Heroes") == 0 then
+		local $hwnd_temp = WinGetHandle("Clicker Heroes")
+		if $hwnd_temp == 0 then
 			$CH_Hwnd = 0
 			return 0
 		else
-			$CH_Hwnd = WinGetHandle("Clicker Heroes")
+			$CH_Hwnd = $hwnd_temp
 			return $CH_Hwnd
 		endif
 	else
@@ -36,7 +37,7 @@ Func calcMouseCoords_winapi()
 	DllStructSetData($mousePosStruct, "X", $mousePos[0])
 	DllStructSetData($mousePosStruct, "Y", $mousePos[1])
 	
-	local $rtvalue = _WinAPI_ScreenToClient(WinGetHandle("Clicker Heroes"), $mousePosStruct)
+	local $rtvalue = _WinAPI_ScreenToClient(CH_Hwnd, $mousePosStruct)
 	
 	local $newCoords[2] = [DllStructGetData($mousePosStruct, "X"), DllStructGetData($mousePosStruct, "Y")]
 	
