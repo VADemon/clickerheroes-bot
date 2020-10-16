@@ -28,7 +28,7 @@ Func doInactivityClick()
 endfunc
 
 Func calcMouseCoords_winapi()
-	local $clientSize = WinGetClientSize("Clicker Heroes")
+	local $clientSize = WinGetClientSize($CH_Hwnd)
 	
 	Local $mousePos = MouseGetPos()	; 0 = X;  1 = Y
 	Local $mousePosStruct = DllStructCreate("int X;int Y")
