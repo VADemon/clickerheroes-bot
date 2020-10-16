@@ -24,3 +24,7 @@ sleep = 16
 ; Click to maintain active bonus even if bot is inactive
 ; No longer needed since autoclickers
 inactivityclicker = 0
+
+[help]
+; Dont show startup help if 0
+startupRemaining=5

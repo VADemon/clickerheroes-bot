@@ -1,5 +1,6 @@
 #include <WinAPI.au3>
 #include <PostMessage.au3>
+#include <TrayConstants.au3>
 
 #include <ClickFunctions.au3>
 #include <ClickerHeroes_functions.au3>
@@ -46,6 +47,7 @@ Global $User32 = DllOpen("User32.dll")
 Global $inactivityClickTimer = 0
 Global $CH_Hwnd = 0
 
+autoDisplayTrayHelp()
 
 while 1
 
@@ -97,5 +99,13 @@ Func playsound($y)
 		SoundPlay(@ScriptDir & "\turnon.wav")
 	elseif $y==0 then
 		SoundPlay(@ScriptDir & "\turnoff.wav")
+	endif
+EndFunc
+
+Func autoDisplayTrayHelp()
+	local $startupRemaining = IniRead($cfgFile, "help", "startupRemaining", 1)
+	If 0 < $startupRemaining then
+		TrayTip("CH ClickerBot", "Exit the bot by right-clicking here. Have fun!", 2500, $TIP_ICONNONE+$TIP_NOSOUND)
+		IniWrite($cfgFile, "help", "startupRemaining", $startupRemaining-1)
 	endif
 EndFunc
